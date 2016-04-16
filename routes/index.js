@@ -10,6 +10,10 @@ router.get('/login', function(req, res){
     res.sendFile(__dirname + '/login.html');
 });
 
+router.get('/main', function(req ,res){
+    res.sendFile(__dirname + '/main.html')
+});
+
 /* JS Files */
 router.get('/jquery', function(req, res){
    res.sendFile(__dirname + 'js/jquery-2.1.4.min.js');
@@ -21,6 +25,14 @@ router.get('/noty', function(req, res){
 
 router.get('/bootstrapjs', function(req, res){
     res.sendFile(__dirname + 'js/bootstrap.min.js');
+});
+
+router.get('/loginjs', function(req, res){
+    res.sendFile(__dirname + 'js/login.js');
+});
+
+router.get('/sha', function(req, res){
+    res.sendFile(__dirname + 'js/sha.js');
 });
 
 /* CSS Files */
