@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 
-var connectionString = process.env || 'postgres://jsb:test@localhost:5432/dictate';
+var connectionString = process.env.DATABASE_URL || 'postgres://jsb:test@localhost:5432/dictate';
 
 /* HTML Files */
 router.get('/', function(req, res) {

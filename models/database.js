@@ -1,5 +1,5 @@
 var pg = require('pg');
-var connectionString = 'jsb:test@localhost:5432/dictate';
+var connectionString = process.env.DATABASE_URL || 'jsb:test@localhost:5432/dictate';
 
 var client = new pg.Client(connectionString);
 
