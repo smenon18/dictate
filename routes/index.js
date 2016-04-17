@@ -14,37 +14,11 @@ router.get('/login', function(req, res){
 });
 
 router.get('/main', function(req ,res){
-    res.sendFile(__dirname + '/main.html')
+    res.sendFile(__dirname + '/main.html');
 });
 
-/* JS Files */
-router.get('/jquery', function(req, res){
-   res.sendFile(__dirname + 'js/jquery-2.1.4.min.js');
-});
-
-router.get('/noty', function(req, res){
-   res.sendFile(__dirname + 'js/jquery.noty.packaged.min.js');
-});
-
-router.get('/bootstrapjs', function(req, res){
-    res.sendFile(__dirname + 'js/bootstrap.min.js');
-});
-
-router.get('/loginjs', function(req, res){
-    res.sendFile(__dirname + 'js/login.js');
-});
-
-router.get('/sha', function(req, res){
-    res.sendFile(__dirname + 'js/sha.js');
-});
-
-/* CSS Files */
-router.get('/bootstrapcss',function(req, res){
-    res.sendFile(__dirname + 'css/bootstrap.min.css');
-});
-
-router.get('/animate', function(req,res){
-    res.sendFile(__dirname + 'css/Animate.css');
+router.get('/call', function(req, res){
+    res.sendFile(__dirname + 'call.html');
 });
 
 /* Ajax Calls */
@@ -68,6 +42,28 @@ router.post('/checkLogin', function(req, res){
                 } else {
                     done();
                     res.send({checked: true, id: result[0].id}).end();
+                }
+            });
+        }
+    });
+});
+
+router.post('/signup', function(req, res){
+    user = req.body.user;
+    pass = req.body.pass;
+    pg.connect(connectionString, function(err, client, done){
+        if(err){
+            console.error(err);
+            done()
+            res.sendStatus(503).end();
+        } else {
+            client.query("INSERT INTO user(username, password) VALUES (" + user + ", " + pass + ");", function(err, result){
+                if(err){
+                    done();
+                    res.send({checked: false}).end();
+                } else {
+                    done();
+                    res.send({checked: true}).end();
                 }
             });
         }
