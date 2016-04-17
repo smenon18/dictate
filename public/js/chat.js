@@ -225,8 +225,10 @@ if (!('webkitSpeechRecognition' in window)) {
     if(event.results[event.results.length - 1].isFinal)
     {
       recogCheck();
+      clearTimeout(timing);
       timing = setTimeout(recogCheck, 500);
     }else {
+      clearTimeout(timing);
       timing = setTimeout(recogCheck, 3000);
     }
   };
@@ -265,11 +267,19 @@ if (!('webkitSpeechRecognition' in window)) {
     return s.replace(first_char, function(m) { return m.toUpperCase(); });
   }
 
+  var index = 0;
+  var text = '';
+
   function recogCheck()
   {
     if (recognizing)
     {
-      perm_span.innerHTML = final_span.innerHTML;
+      index++;
+      if(text !== final_span.innerHTML) {
+        $('#results').append('<div id="post-' + index + '" class="well-sm">' +
+            '<b>' + sessionStorage.user + '</b><br>' + Date.now() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
+        text = final_span.innerHTML;
+      }
       recognition.stop();
       return;
     }
@@ -277,7 +287,7 @@ if (!('webkitSpeechRecognition' in window)) {
     ignore_onend = false
     final_span.innerHTML = '';
     interim_span.innerHTML = '';
-    start_timestamp = new Date();
+    start_timestamp = Date.now();
   }
 }
 
