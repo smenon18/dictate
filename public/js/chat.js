@@ -8,11 +8,11 @@ socket.on('connect', function()
 socket.on('updatechat', function(username, data)
 {
   time = new Date().toLocaleString();
-  index++;
 
   $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-            '<b>' + username + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
+            '<b>' + 'User 2' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
 
+  index++;
 });
 
 
@@ -282,7 +282,7 @@ if (!('webkitSpeechRecognition' in window)) {
       index++;
       if(text !== final_span.innerHTML) {
         $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-            '<b>' + sessionStorage.user + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
+            '<b>' + 'User 1' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
 		socket.emit('sendchat', text);
         text = final_span.innerHTML;		
       }
@@ -295,6 +295,6 @@ if (!('webkitSpeechRecognition' in window)) {
     interim_span.innerHTML = '';
     start_timestamp = new Date().toLocaleString();
   }
-}
 
-recognition.start();
+  recognition.start();
+}

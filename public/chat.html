@@ -19,7 +19,7 @@
               height: 100%;
               align: center;
               display: block;
-              margin: 0 auto;
+	      margin: 0 auto;
           }
           .volume {
               position: absolute;
@@ -42,13 +42,11 @@
       </style>
   </head>
   <body>
-    <div class="well">
-      <div class="videoContainer">
+      <div class="videoContainer well">
         <video id="localVideo" style="height: 150px;" oncontextmenu="return false;" autoplay=""></video>
         <meter id="localVolume" class="volume" min="-45" max="-20" high="-25" low="-40" value="-45" style="display: inline-block;"></meter>
       </div>
       <div class="videoContainer" id="remotes"></div>
-    </div>
     <div>
       <div id="results" style="display: block; margin: 0 auto; width: 40%">
         <span class="perm" id="perm_span"></span>
