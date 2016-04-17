@@ -74,3 +74,21 @@ document.getElementById('signup').addEventListener("click", function(){
         }
     });
 });
+
+function sha(password)
+{   
+    //Check for empty fields.
+    if(password === '')
+    {
+        var error = true;
+        return error;
+    }
+    else
+    {
+        var shaObj = new jsSHA("SHA-256", 'TEXT');
+        shaObj.update(password.toString());
+        var hash = shaObj.getHash('HEX');
+        
+        return hash;
+    }
+}
