@@ -5,13 +5,23 @@
       <title>Chat</title>
       <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
       <style>
+          body{
+            background-color: #efffef;
+          }
+          .well{
+            background-color: #b7e5b7;
+            width: 100%;
+            height: 260px;
+            padding-left: 28%;
+          }
           .videoContainer {
               position: relative;
-              width: 200px;
-              height: 150px;
+              width: 265px;
+              height: 215px;
               align: center;
-              display: block;
-              margin: 0 auto;
+              display: inline;
+              float: left;
+              margin: 0 5px 0 5px;
           }
           .videoContainer video {
               position: relative;
@@ -19,7 +29,7 @@
               height: 100%;
               align: center;
               display: block;
-	      margin: 0 auto;
+        margin: 0 auto;
           }
           .volume {
               position: absolute;
@@ -42,16 +52,22 @@
       </style>
   </head>
   <body>
-      <div class="videoContainer well">
-        <video id="localVideo" style="height: 150px;" oncontextmenu="return false;" autoplay=""></video>
+    <div class="well">
+      <div class="videoContainer">
+        <video id="localVideo" oncontextmenu="return false;" autoplay=""></video>
         <meter id="localVolume" class="volume" min="-45" max="-20" high="-25" low="-40" value="-45" style="display: inline-block;"></meter>
       </div>
       <div class="videoContainer" id="remotes"></div>
-    <div>
-      <div id="results" style="display: block; margin: 0 auto; width: 40%">
+    </div>
+    <div class="row-md-12">
+      <div id="chat-me" class="col-md-4" style="display: block; margin: 0 auto; ">
+      </div>
+      <div id="results" class="col-md-4" style="display: block; margin: 0 auto; outline: 1px solid grey; background-color: #e5ffe5;">
         <span class="perm" id="perm_span"></span>
         <span class="final" id="final_span"></span>
         <span class="interim" id="interim_span"></span>
+      </div>
+      <div id="chat-other" class="col-md-4" style="display: block; margin: 0 auto;">
       </div>
     </div>
     <script src="js/jquery-2.1.4.min.js"></script>

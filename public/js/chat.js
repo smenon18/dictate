@@ -12,9 +12,9 @@ socket.on('updatechat', function(username, data)
   time = new Date().toLocaleString();
 
   if(data !== '' && typeof(data) !== 'undefined' && !(data === 'undefined' && unCounter)) {
-  
-    $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-              '<b>' + 'User 2' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
+
+    $('#chat-other').prepend('<div id="post-' + index + '" class="well-sm">' +
+              '<b>' + 'Themself' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
 
     index++;
     unCounter = false;
@@ -287,10 +287,10 @@ if (!('webkitSpeechRecognition' in window)) {
     {
       index++;
       if(text !== final_span.innerHTML) {
-        $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-            '<b>' + 'User 1' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
+        $('#chat-me').append('<div id="post-' + index + '" class="well-sm">' +
+            '<b>' + 'Myself' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
 		socket.emit('sendchat', text);
-        text = final_span.innerHTML;		
+        text = final_span.innerHTML;
       }
       recognition.stop();
       return;
