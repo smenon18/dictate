@@ -5,14 +5,20 @@ socket.on('connect', function()
   socket.emit('adduser', sessionStorage.user);
 });
 
+var unCounter = true;
+
 socket.on('updatechat', function(username, data)
 {
   time = new Date().toLocaleString();
 
-  $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-            '<b>' + 'User 2' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
+  if(data !== '' && typeof(data) !== 'undefined' && !(data === 'undefined' && unCounter)) {
+  
+    $('#results').append('<div id="post-' + index + '" class="well-sm">' +
+              '<b>' + 'User 2' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
 
-  index++;
+    index++;
+    unCounter = false;
+  }
 });
 
 
