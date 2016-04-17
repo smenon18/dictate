@@ -7,11 +7,15 @@ socket.on('connect', function()
 
 var unCounter = true;
 
-socket.on('updatechat', function(username, data)
+socket.on('updatechat', function(user, data)
 {
   time = new Date().toLocaleString();
 
-  if(data !== '' && typeof(data) !== 'undefined' && !(data === 'undefined' && unCounter)) {
+  console.log('Their: ' + user);
+  console.log('Ours: ' + socket.id);
+  console.log('Equal? ' + user === socket.id);
+
+  if(data !== '' && typeof(data) !== 'undefined' && !(data === 'undefined' && unCounter) && user !== socket.id && !!user) {
 
     $('#chat-other').prepend('<div id="post-' + index + '" class="well-sm">' +
               '<b>' + 'Themself' + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');

@@ -9,7 +9,7 @@ io.sockets.on('connection',
 function(socket)
 {
 	socket.on('sendchat', function(data){
-		io.sockets.in(socket.room).emit('updatechat', socket.username, data);
+		io.sockets.in(socket.room).emit('updatechat', socket.id, data);
 	});
 	
     socket.on('adduser', function(user)
