@@ -8,9 +8,26 @@ document.getElementById('login').addEventListener("click", function(){
     user = document.getElementById('username').value;
     pass = document.getElementById('password').value;
     pass = sha(pass)
-    $.post('checkLogin', {user: user, password: pass, salt: salt}, function(data){
+    $.post('/checkLogin', {user: user, password: pass}, function(data){
         if(data.checked == true){
             window.location = "/main";
+        } else {
+             var n = noty(
+                    {
+                        layout: 'topRight',
+                        theme: 'relax',
+                        type: 'error',
+                        text: 'Error loging in, please try again.',
+                        animation:
+                        {
+                            open: 'animated fadeInRightBig',
+                            close: 'animated fadeOutLeft'
+                        },
+                        maxVisible: 5,
+                        closeWith: ['click'],
+                        timeout: 2500,    //2500ms
+                        buttons: false
+                    });
         }
     })
  });
