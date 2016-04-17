@@ -1,5 +1,23 @@
+var socket = io.connect('http://localhost:3000');
+
+socket.on('connect', function()
+{
+  socket.emit('adduser', sessionStorage.user);
+});
+
+socket.on('updatechat', function(username, data)
+{
+  time = new Date().toLocaleString();
+  index++;
+
+  $('#results').append('<div id="post-' + index + '" class="well-sm">' +
+            '<b>' + username + '</b><br>' + new Date().toLocaleString() + '<br><p>' + data  + '</p></div>');
+
+});
+
+
 // grab the room from the URL
-var room = "main";
+var room = "general";
 var timing = null;
 
 // create our webrtc connection
@@ -12,6 +30,7 @@ var webrtc = new SimpleWebRTC({
     autoRequestMedia: true,
     debug: false,
     detectSpeakingEvents: true,
+	socketio: socket,
     autoAdjustMic: true
 });
 
@@ -36,21 +55,6 @@ webrtc.on('localStream', function (stream) {
 });
 // we did not get access to the camera
 webrtc.on('localMediaError', function (err) {
-});
-
-// local screen obtained
-webrtc.on('localScreenAdded', function (video) {
-    video.onclick = function () {
-        video.style.width = video.videoWidth + 'px';
-        video.style.height = video.videoHeight + 'px';
-    };
-    document.getElementById('localScreenContainer').appendChild(video);
-    $('#localScreenContainer').show();
-});
-// local screen removed
-webrtc.on('localScreenRemoved', function (video) {
-    document.getElementById('localScreenContainer').removeChild(video);
-    $('#localScreenContainer').hide();
 });
 
 // a peer video has been added
@@ -151,6 +155,9 @@ webrtc.on('connectivityError', function (peer) {
     }
 });
 
+//
+//WebToSpeech API
+//
 
 if (!('webkitSpeechRecognition' in window)) {
   console.log("Unavailable");
@@ -276,7 +283,8 @@ if (!('webkitSpeechRecognition' in window)) {
       if(text !== final_span.innerHTML) {
         $('#results').append('<div id="post-' + index + '" class="well-sm">' +
             '<b>' + sessionStorage.user + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
-        text = final_span.innerHTML;
+		socket.emit('sendchat', text);
+        text = final_span.innerHTML;		
       }
       recognition.stop();
       return;
