@@ -21,7 +21,7 @@ function(socket)
 		users[user] = socket.id;
     });
 	
-	socket.on('sendchat', function(socket)
+	socket.on('sendchat', function(data)
 	{
 		io.sockets.in('general').emit('updatechat', socket.username, data);
 	});
