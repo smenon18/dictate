@@ -1,6 +1,5 @@
 // grab the room from the URL
 var room = "main";
-var eventCount = 5;
 var timing = null;
 
 // create our webrtc connection
@@ -27,7 +26,6 @@ function showVolume(el, volume) {
     if (volume < -45) volume = -45; // -45 to -20 is
     if (volume > -20) volume = -20; // a good range
     el.value = volume;
-    global_volume = volume;
 }
 
 // we got access to the camera
@@ -277,7 +275,7 @@ if (!('webkitSpeechRecognition' in window)) {
       index++;
       if(text !== final_span.innerHTML) {
         $('#results').append('<div id="post-' + index + '" class="well-sm">' +
-            '<b>' + sessionStorage.user + '</b><br>' + Date.now() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
+            '<b>' + sessionStorage.user + '</b><br>' + new Date().toLocaleString() + '<br><p>' + final_span.innerHTML.substring(text.length, final_span.innerHTML.length + 1)  + '</p></div>');
         text = final_span.innerHTML;
       }
       recognition.stop();
@@ -287,7 +285,7 @@ if (!('webkitSpeechRecognition' in window)) {
     ignore_onend = false
     final_span.innerHTML = '';
     interim_span.innerHTML = '';
-    start_timestamp = Date.now();
+    start_timestamp = new Date().toLocaleString();
   }
 }
 
