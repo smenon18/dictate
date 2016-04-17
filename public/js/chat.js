@@ -1,4 +1,4 @@
-var socket = io.connect();
+var socket = io.connect('dictatechats.herokuapp.com');
 
 socket.on('connect', function()
 {
