@@ -8,6 +8,10 @@ function(socket)
     socket.on('adduser', function(data)
     {
     });
+	
+	socket.on('connInterview', function(data){
+		socket.emit('interviewRequest', data);
+	});
 });
 
 module.exports = io;
