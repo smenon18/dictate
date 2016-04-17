@@ -1,4 +1,4 @@
-var socket = io('localhost:3000');
+var socket = io('http://localhost:3000');
 
 var interviewCall = function(id){
 	socket.emit('connInterview', {callerID: id});
