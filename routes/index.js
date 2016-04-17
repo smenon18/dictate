@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', function(req, res){
-    res.sendFile(__dirname + '/login.html');
+    res.sendFile(__dirname + '/../public/login.html');
 });
 
 router.get('/main', function(req ,res){

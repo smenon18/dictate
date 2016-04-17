@@ -10,7 +10,7 @@ document.getElementById('login').addEventListener("click", function(){
     pass = sha(pass);
     $.post('/checkLogin', {user: user, password: pass}, function(data){
         if(data.checked == true){
-            window.location = "/main";
+            window.location = "/home.html";
         } else {
              var n = noty(
                     {
