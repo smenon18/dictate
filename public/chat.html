@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Chat</title>
+      <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+      <style>
+          .videoContainer {
+              position: relative;
+              width: 200px;
+              height: 150px;
+              align: center;
+              display: block;
+              margin: 0 auto;
+          }
+          .videoContainer video {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              align: center;
+              display: block;
+              margin: 0 auto;
+          }
+          .volume {
+              position: absolute;
+              left: 15%;
+              width: 70%;
+              bottom: 5px;
+              height: 5px;
+              display: none;
+          }
+          .connectionstate {
+              position: absolute;
+              top: 0px;
+              width: 100%;
+              text-align: center;
+              color: #fff
+          }
+          #localScreenContainer {
+              display: none;
+          }
+      </style>
+  </head>
+  <body>
+    <div class="well">
+      <div class="videoContainer">
+        <video id="localVideo" style="height: 150px;" oncontextmenu="return false;" autoplay=""></video>
+        <meter id="localVolume" class="volume" min="-45" max="-20" high="-25" low="-40" value="-45" style="display: inline-block;"></meter>
+      </div>
+      <div class="videoContainer" id="remotes"></div>
+    </div>
+    <div>
+      <div id="results" style="display: block; margin: 0 auto; width: 40%">
+        <span class="perm" id="perm_span"></span>
+        <span class="final" id="final_span"></span>
+        <span class="interim" id="interim_span"></span>
+      </div>
+    </div>
+	<script src="js/socket.io-1.4.5.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/simplewebrtc-v2.js"></script>
+    <script src="js/chat.js"></script>
+  </body>
+</html>
